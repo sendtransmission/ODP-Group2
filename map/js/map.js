@@ -49,7 +49,7 @@ function getColor(d,i){
 		return d3.rgb(255,255,255);
 	} else {
 		var p = ( d.value / max_value ) * config.color_multiplier;
-//		console.log( d.name + " (" + d.value + ") " + p + " (" + max_value + ")");
+		console.log( d.name + " (" + d.value + ") " + p + " (" + max_value + ")");
 		var h = overlayHueMin + p * (overlayHueMax - overlayHueMin);
 		var s = overlaySatMin + p * (overlaySatMax - overlaySatMin);
 		var v = overlayValMin + p * (overlayValMax - overlayValMin);
@@ -67,7 +67,7 @@ function ready(error, world, names, values) {
 
     var tryit = names.filter(function(n) { return d.id == n.id; })[0];
     if (typeof tryit === "undefined"){
-//      console.log("Failed in match 1: " + d);
+      console.log("Failed in match 1: " + d);
     } else {
       d.name = tryit.name; 
     }
@@ -75,7 +75,7 @@ function ready(error, world, names, values) {
     var local_max = 0; 
     var tryit2 = values.filter(function(n) { return d.name == n.Country; })[0];
     if (typeof tryit2 === "undefined"){
-//	console.log("Failed to find data for: " + d.name);
+	console.log("Failed to find data for: " + d.name);
     } else {
 	d.value = parseInt(tryit2[config.column_title].replace(/\,/g,''));
 	if (d.value > max_value) {
@@ -98,10 +98,16 @@ var country = svg.selectAll(".country").data(countries);
     // Respond to mouse actions
     country
       .on("mousemove", function(d,i) {
+      	d3.select(this).style("stroke","#fff")
+      	.style("stroke-width","1.2px");
+      	
       })
       .on("click", function(d,i) {
       })
       .on("mouseout",  function(d,i) {
+      	d3.select(this).style("stroke","#666")
+      	.style("stroke-width","0.4px"); 	
+      	
       });
 
 }
