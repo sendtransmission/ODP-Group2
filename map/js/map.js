@@ -93,20 +93,25 @@ var country = svg.selectAll(".country").data(countries);
     .attr("class", "country")    
       .attr("title", function(d,i) { return d.name; })
       .attr("d", path)
-      .style("fill", function(d, i) { return getColor(d); });
+      .style("fill", function(d, i) { return getColor(d); })
+      .style("opacity", 0.5)
+      ;
 
     // Respond to mouse actions
     country
       .on("mousemove", function(d,i) {
       	d3.select(this).style("stroke", "#fff")
-      	.style("stroke-width", "1.2px");
+      	.style("stroke-width", "1.2px")
+      	.style("opacity",1);
       })
       .on("click", function(d,i) {
       })
       .on("mouseout",  function(d,i) {
       	
       	d3.select(this).style("stroke", "#666")
-      	.style("stroke-width", "");
+      	.style("stroke-width", "")
+      	.style("opacity",0.5)
+      	;
       });
 
 }
